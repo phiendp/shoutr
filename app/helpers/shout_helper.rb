@@ -1,9 +1,4 @@
 module ShoutHelper
-  def avatar(user)
-    gravatar_url = "//www.gravatar.com/avatar/#{email_digest(user.email)}"
-    image_tag gravatar_url
-  end
-
   def like_button(shout)
     if current_user.liked?(shout)
       link_to "Unlike", unlike_shout_path(shout), method: :delete
@@ -14,11 +9,5 @@ module ShoutHelper
 
   def autolink(text)
     text.gsub(/@\w+/) { |mention| link_to mention, user_path(mention[1..-1]) }.html_safe
-  end
-
-  private
-
-  def email_digest(user_email)
-    Digest::MD5.hexdigest(user_email)
   end
 end
