@@ -4,6 +4,16 @@ module ShoutHelper
     image_tag gravatar_url
   end
 
+  def like_button(shout)
+    if current_user.liked?(shout)
+      link_to "Unlike", unlike_shout_path(shout), method: :delete
+    else
+      link_to "Like", like_shout_path(shout), method: :post
+    end
+  end
+
+  private
+
   def email_digest(user_email)
     Digest::MD5.hexdigest(user_email)
   end
