@@ -1,5 +1,4 @@
-class ShoutsController < ApplicationController
-  
+class ShoutsController < ApplicationController  
   def create
     shout = current_user.shouts.create(shout_params)
     redirect_to root_path, redirect_options_for(shout)
@@ -37,5 +36,4 @@ class ShoutsController < ApplicationController
       { alert: "Could not add this shout!" }
     end
   end
-
 end
