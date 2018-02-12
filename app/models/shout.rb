@@ -6,6 +6,14 @@ class Shout < ApplicationRecord
 
   delegate :username, to: :user
 
+  searchable do
+    text :content do
+      case content
+      when TextShout then content.body
+      when PhotoShout then content.image_file_name
+      end
+    end
+  end
   # def username
   #   user.username
   # end
